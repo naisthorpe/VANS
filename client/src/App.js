@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Navbar from './components/navbar';
 import Home from './pages/home';
+import Upcoming from './pages/Upcoming';
 import Login from './pages/login';
 import Signup from './pages/signUp';
 import { LOADING, SET_USER, UNSET_USER } from './store/actions';
@@ -34,6 +35,7 @@ const App = () => {
       {state.user ? (
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/upcoming" component={Upcoming} />
         </Switch>
       ) : (
         <Switch>

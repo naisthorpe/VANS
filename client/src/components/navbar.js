@@ -31,6 +31,9 @@ const Navbar = () => {
       <Link to="/" className="btn btn-link text-secondary">
         <span className="text-secondary">home</span>
       </Link>
+      <Link to="/upcoming" className="btn btn-link text-secondary">
+        <span className="text-secondary">upcoming</span>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
