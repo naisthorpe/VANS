@@ -31,6 +31,12 @@ const Navbar = () => {
       <Link to="/" className="btn btn-link text-secondary">
         <span className="text-secondary">home</span>
       </Link>
+      <Link to="/upcoming" className="btn btn-link text-secondary">
+        <span className="text-secondary">upcoming</span>
+      </Link>
+      <Link to="/createpost" className="btn btn-link text-secondary">
+        <span className="text-secondary">create</span>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -51,19 +57,19 @@ const Navbar = () => {
               </Link>
             </li>
           ) : (
-            <>
-              <li className="nav-item active">
-                <Link to="/login" className="btn btn-link text-secondary">
-                  <span className="text-secondary">login</span>
-                </Link>
-              </li>
-              <li className="nav-item active">
-                <Link to="/signup" className="btn btn-link">
-                  <span className="text-secondary">sign up</span>
-                </Link>
-              </li>
-            </>
-          )}
+              <>
+                <li className="nav-item active">
+                  <Link to="/login" className="btn btn-link text-secondary">
+                    <span className="text-secondary">login</span>
+                  </Link>
+                </li>
+                <li className="nav-item active">
+                  <Link to="/signup" className="btn btn-link">
+                    <span className="text-secondary">sign up</span>
+                  </Link>
+                </li>
+              </>
+            )}
         </ul>
       </div>
     </nav>
