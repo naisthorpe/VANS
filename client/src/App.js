@@ -24,7 +24,7 @@ const App = () => {
         history.push('/');
       } else {
         dispatch({ type: UNSET_USER });
-        history.push('/login');
+        history.push('/');
       }
     });
   }, [dispatch, history]);
@@ -41,6 +41,7 @@ const App = () => {
         </Switch>
       ) : (
           <Switch>
+            <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Redirect to="/login" />
