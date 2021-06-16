@@ -1,8 +1,8 @@
-import axios from 'axios';
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { LOADING, UNSET_USER } from '../store/actions';
-import { useStoreContext } from '../store/store';
+import axios from "axios";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
+import { LOADING, UNSET_USER } from "../store/actions";
+import { useStoreContext } from "../store/store";
 
 const Navbar = () => {
   const [state, dispatch] = useStoreContext();
@@ -14,15 +14,15 @@ const Navbar = () => {
     dispatch({ type: LOADING });
 
     axios
-      .get('/api/users/logout')
+      .get("/api/users/logout")
       .then((response) => {
         if (response.status === 200) {
           dispatch({ type: UNSET_USER });
-          history.replace('/login');
+          history.replace("/login");
         }
       })
       .catch((error) => {
-        console.log('Logout error');
+        console.log("Logout error");
       });
   };
 
@@ -31,12 +31,7 @@ const Navbar = () => {
       <Link to="/" className="btn btn-link text-secondary">
         <span className="text-secondary">home</span>
       </Link>
-      <Link to="/upcoming" className="btn btn-link text-secondary">
-        <span className="text-secondary">upcoming</span>
-      </Link>
-      <Link to="/createpost" className="btn btn-link text-secondary">
-        <span className="text-secondary">create</span>
-      </Link>
+
       <button
         className="navbar-toggler"
         type="button"
@@ -52,24 +47,34 @@ const Navbar = () => {
         <ul className="navbar-nav">
           {state.user ? (
             <li className="nav-item active">
-              <Link to="#" className="btn btn-link text-secondary" onClick={logout}>
+              <Link
+                to="#"
+                className="btn btn-link text-secondary"
+                onClick={logout}
+              >
                 <span className="text-secondary">logout</span>
+              </Link>
+              <Link to="/upcoming" className="btn btn-link text-secondary">
+                <span className="text-secondary">upcoming</span>
+              </Link>
+              <Link to="/createpost" className="btn btn-link text-secondary">
+                <span className="text-secondary">create</span>
               </Link>
             </li>
           ) : (
-              <>
-                <li className="nav-item active">
-                  <Link to="/login" className="btn btn-link text-secondary">
-                    <span className="text-secondary">login</span>
-                  </Link>
-                </li>
-                <li className="nav-item active">
-                  <Link to="/signup" className="btn btn-link">
-                    <span className="text-secondary">sign up</span>
-                  </Link>
-                </li>
-              </>
-            )}
+            <>
+              <li className="nav-item active">
+                <Link to="/login" className="btn btn-link text-secondary">
+                  <span className="text-secondary">login</span>
+                </Link>
+              </li>
+              <li className="nav-item active">
+                <Link to="/signup" className="btn btn-link">
+                  <span className="text-secondary">sign up</span>
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>

@@ -1,15 +1,15 @@
-import axios from 'axios';
-import { isNil } from 'lodash';
-import React, { useEffect } from 'react';
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
-import Navbar from './components/navbar';
-import Home from './pages/home';
-import Upcoming from './pages/Upcoming';
-import CreatePost from './pages/CreatePost';
-import Login from './pages/login';
-import Signup from './pages/signUp';
-import { LOADING, SET_USER, UNSET_USER } from './store/actions';
-import { useStoreContext } from './store/store';
+import axios from "axios";
+import { isNil } from "lodash";
+import React, { useEffect } from "react";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+import Navbar from "./components/navbar";
+import Home from "./pages/home";
+import Upcoming from "./pages/Upcoming";
+import CreatePost from "./pages/CreatePost";
+import Login from "./pages/login";
+import Signup from "./pages/signUp";
+import { LOADING, SET_USER, UNSET_USER } from "./store/actions";
+import { useStoreContext } from "./store/store";
 
 const App = () => {
   const history = useHistory();
@@ -18,13 +18,13 @@ const App = () => {
   useEffect(() => {
     dispatch({ type: LOADING });
 
-    axios.get('/api/users').then((response) => {
+    axios.get("/api/users").then((response) => {
       if (!isNil(response.data.user)) {
         dispatch({ type: SET_USER, user: response.data.user });
-        history.push('/');
+        history.push("/");
       } else {
         dispatch({ type: UNSET_USER });
-        history.push('/');
+        history.push("/");
       }
     });
   }, [dispatch, history]);
@@ -40,13 +40,13 @@ const App = () => {
           <Route exact path="/createpost" component={CreatePost} />
         </Switch>
       ) : (
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Redirect to="/login" />
-          </Switch>
-        )}
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Redirect to="/login" />
+        </Switch>
+      )}
     </div>
   );
 };

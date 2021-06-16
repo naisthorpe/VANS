@@ -1,16 +1,16 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { LOADING, SET_USER } from '../store/actions';
-import { useStoreContext } from '../store/store';
+import axios from "axios";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { LOADING, SET_USER } from "../store/actions";
+import { useStoreContext } from "../store/store";
 
 const Login = () => {
   const [, /* state */ dispatch] = useStoreContext();
   const history = useHistory();
 
   const [loginCreds, setLoginCreds] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleChange = (event) => {
@@ -25,18 +25,20 @@ const Login = () => {
     dispatch({ type: LOADING });
 
     axios
-      .post('/api/users/login', {
+      .post("/api/users/login", {
         email: loginCreds.email,
         password: loginCreds.password,
       })
       .then((response) => {
+        // console.log(response);
+
         if (response.status === 200) {
           dispatch({ type: SET_USER, user: response.data });
-          history.replace('/');
+          history.replace("/");
         }
       })
       .catch((error) => {
-        console.log('login error: ');
+        console.log("login error: ");
         console.log(error);
       });
   };
@@ -69,7 +71,11 @@ const Login = () => {
           value={loginCreds.password}
           onChange={handleChange}
         />
-        <button className="btn btn-lg btn-primary btn-block" type="submit" onClick={handleSubmit}>
+        <button
+          className="btn btn-lg btn-primary btn-block"
+          type="submit"
+          onClick={handleSubmit}
+        >
           Login
         </button>
       </form>

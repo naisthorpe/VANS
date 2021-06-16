@@ -1,5 +1,6 @@
 DROP DATABASE IF EXISTS vans_db;
 CREATE DATABASE vans_db;
+USE vans.db
 
 CREATE TABLE `sessions` (
   `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
