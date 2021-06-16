@@ -31,12 +31,7 @@ const Navbar = () => {
       <Link to="/" className="btn btn-link text-secondary">
         <span className="text-secondary">home</span>
       </Link>
-      <Link to="/upcoming" className="btn btn-link text-secondary">
-        <span className="text-secondary">upcoming</span>
-      </Link>
-      <Link to="/createpost" className="btn btn-link text-secondary">
-        <span className="text-secondary">create</span>
-      </Link>
+
       <button
         className="navbar-toggler"
         type="button"
@@ -54,6 +49,12 @@ const Navbar = () => {
             <li className="nav-item active">
               <Link to="#" className="btn btn-link text-secondary" onClick={logout}>
                 <span className="text-secondary">logout</span>
+              </Link>
+              <Link to="/upcoming" className="btn btn-link text-secondary">
+                <span className="text-secondary">upcoming</span>
+              </Link>
+              <Link to="/createpost" className="btn btn-link text-secondary">
+                <span className="text-secondary">create</span>
               </Link>
             </li>
           ) : (
