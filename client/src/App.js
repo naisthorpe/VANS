@@ -4,8 +4,6 @@ import React, { useEffect } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Navbar from './components/navbar';
 import Home from './pages/home';
-import Upcoming from './pages/Upcoming';
-import CreatePost from './pages/CreatePost';
 import Login from './pages/login';
 import Signup from './pages/signUp';
 import { LOADING, SET_USER, UNSET_USER } from './store/actions';
@@ -24,7 +22,7 @@ const App = () => {
         history.push('/');
       } else {
         dispatch({ type: UNSET_USER });
-        history.push('/login');
+        history.push('/');
       }
     });
   }, [dispatch, history]);
@@ -36,16 +34,15 @@ const App = () => {
       {state.user ? (
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/upcoming" component={Upcoming} />
-          <Route exact path="/createpost" component={CreatePost} />
         </Switch>
       ) : (
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Redirect to="/login" />
-          </Switch>
-        )}
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Redirect to="/login" />
+        </Switch>
+      )}
     </div>
   );
 };
