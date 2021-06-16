@@ -14,6 +14,8 @@ const Login = () => {
     password: '',
   });
 
+  const [errorMsg, setErrorMsg] = useState(null);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -28,8 +30,14 @@ const Login = () => {
     try {
       const response = await API.Users.login(loginCreds.email, loginCreds.password)
 
+      if (response.data.status === 'error') {
+        setErrorMsg(response.data.message);
+        return
+      }
+
       if (response.status === 200) {
         dispatch({ type: SET_USER, user: response.data });
+        setErrorMsg(null);
         history.replace('/');
       }
 
@@ -54,6 +62,8 @@ const Login = () => {
   return (
     <div className="text-center">
       <h4>Login</h4>
+      {errorMsg ? <p>{errorMsg}</p> : null}
+      <p></p>
       <form className="form-signin">
         <label htmlFor="inputEmail" className="sr-only">
           Email address
