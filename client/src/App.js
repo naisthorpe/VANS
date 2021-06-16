@@ -4,14 +4,14 @@ import React, { useEffect } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/home';
-import Upcoming from './pages/Upcoming';
-import CreatePost from './pages/CreatePost';
 import Login from './pages/login';
 import Signup from './pages/signUp';
 import Categories from './components/Categories';
 import Footer from './components/Footer';
 import { LOADING, SET_USER, UNSET_USER } from './store/actions';
 import { useStoreContext } from './store/store';
+import TwilioTest from "./pages/TwilioTest";
+
 import MenuItem from "./components/MenuItem";
 import Sidemenu from "./components/Sidemenu";
 // import { Typography } from '@material-ui/core';
@@ -26,10 +26,8 @@ const App = () => {
     axios.get('/api/users').then((response) => {
       if (!isNil(response.data.user)) {
         dispatch({ type: SET_USER, user: response.data.user });
-        history.push('/');
       } else {
         dispatch({ type: UNSET_USER });
-        history.push('/');
       }
     });
   }, [dispatch, history]);
@@ -42,10 +40,18 @@ const App = () => {
       {state.user ? (
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/upcoming" component={Upcoming} />
-          <Route exact path="/createpost" component={CreatePost} />
+          <Route exact path="/twilio" component={TwilioTest} />
         </Switch>
       ) : (
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/twilio" component={TwilioTest} />
+          <Redirect to="/login" />
+        </Switch>
+      )}
+
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
