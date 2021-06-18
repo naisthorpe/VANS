@@ -9,6 +9,7 @@ import Signup from './pages/signUp';
 import { LOADING, SET_USER, UNSET_USER } from './store/actions';
 import { useStoreContext } from './store/store';
 import TwilioTest from "./pages/TwilioTest";
+import Footer from './components/Footer';
 
 
 const App = () => {
@@ -45,8 +46,11 @@ const App = () => {
             <Route exact path="/twilio" component={TwilioTest} />
             <Redirect to="/login" />
           </Switch>
+
         )}
+      <Footer />
     </div >
+
 
   );
 };
