@@ -10,6 +10,7 @@ import { LOADING, SET_USER, UNSET_USER } from './store/actions';
 import { useStoreContext } from './store/store';
 import TwilioTest from "./pages/TwilioTest";
 import Footer from './components/Footer';
+import CreatePost from './pages/CreatePost';
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/twilio" component={TwilioTest} />
+          <Route exact path="/createpost" component={CreatePost} />
         </Switch>
       ) : (
           <Switch>
