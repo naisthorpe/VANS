@@ -2,14 +2,14 @@ import axios from "axios";
 import { isNil } from "lodash";
 import React, { useEffect } from "react";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
+import Header from "./components/Header/Header";
 import Home from "./pages/home";
-import Upcoming from "./pages/Upcoming";
-import CreatePost from "./pages/CreatePost";
 import Login from "./pages/login";
 import Signup from "./pages/signUp";
 import { LOADING, SET_USER, UNSET_USER } from "./store/actions";
 import { useStoreContext } from "./store/store";
+import TwilioTest from "./pages/TwilioTest";
 
 const App = () => {
   const history = useHistory();
@@ -21,23 +21,19 @@ const App = () => {
     axios.get("/api/users").then((response) => {
       if (!isNil(response.data.user)) {
         dispatch({ type: SET_USER, user: response.data.user });
-        history.push("/");
       } else {
         dispatch({ type: UNSET_USER });
-        history.push("/");
       }
     });
   }, [dispatch, history]);
 
   return (
     <div>
-      <Navbar />
-
+      <Header />
       {state.user ? (
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/upcoming" component={Upcoming} />
-          <Route exact path="/createpost" component={CreatePost} />
+          <Route exact path="/twilio" component={TwilioTest} />
         </Switch>
       ) : (
         <Switch>

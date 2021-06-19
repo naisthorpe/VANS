@@ -1,4 +1,5 @@
 import axios from "axios";
+import API from "../lib/API";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { LOADING, SET_USER } from "../store/actions";
@@ -13,39 +14,56 @@ const Login = () => {
     password: "",
   });
 
+  const [errorMsg, setErrorMsg] = useState(null);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
     setLoginCreds({ ...loginCreds, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     dispatch({ type: LOADING });
 
-    axios
-      .post("/api/users/login", {
-        email: loginCreds.email,
-        password: loginCreds.password,
-      })
-      .then((response) => {
-        // console.log(response);
+    try {
+      const response = await API.Users.login(
+        loginCreds.email,
+        loginCreds.password
+      );
 
-        if (response.status === 200) {
-          dispatch({ type: SET_USER, user: response.data });
-          history.replace("/");
-        }
-      })
-      .catch((error) => {
-        console.log("login error: ");
-        console.log(error);
-      });
+      if (response.data.status === "error") {
+        setErrorMsg(response.data.message);
+        return;
+      }
+
+      if (response.status === 200) {
+        dispatch({ type: SET_USER, user: response.data });
+        setErrorMsg(null);
+        history.replace("/");
+      }
+    } catch (err) {
+      console.log("login error: ");
+      console.log(err);
+    }
+
+    // axios
+    //   .post('/api/users/login', {
+    //     email: loginCreds.email,
+    //     password: loginCreds.password,
+    //   })
+    //   .then((response) => {
+    //   })
+    //   .catch((error) => {
+    //   });
   };
 
   return (
     <div className="text-center">
       <h4>Login</h4>
+      {errorMsg ? <p>{errorMsg}</p> : null}
+      <p></p>
       <form className="form-signin">
         <label htmlFor="inputEmail" className="sr-only">
           Email address
@@ -72,7 +90,7 @@ const Login = () => {
           onChange={handleChange}
         />
         <button
-          className="btn btn-lg btn-primary btn-block"
+          className="btn btn-lg btn-secondary btn-block"
           type="submit"
           onClick={handleSubmit}
         >
