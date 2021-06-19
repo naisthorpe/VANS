@@ -1,19 +1,40 @@
 import React from "react";
-class Footer extends React.Component {
-    render() {
-        return (
-            <div id="footer" className="container-fluid text-center py-5">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-sm-12 col-md-8 mx-auto">
-                            Footer
-                        </div>
-                    </div>
+const style = {
+    backgroundColor: "#F8F8F8",
+    borderTop: "1px solid #E7E7E7",
+    textAlign: "center",
+    padding: "20px",
+    position: "fixed",
+    left: "0",
+    bottom: "0",
+    height: "60px",
+    width: "100%",
+    zIndex: 10
 
-                </div>
-            </div>
-        );
-    }
 }
 
-export default Footer;
+const phantom = {
+    display: 'block',
+    padding: '20px',
+    height: '60px',
+    width: '100%',
+    zIndex: 10
+
+}
+
+const mainDiv = {
+    zIndex: 10
+}
+
+function Footer({ children }) {
+    return (
+        <div style={mainDiv}>
+            <div style={phantom} />
+            <div style={style}>
+                {children}
+            </div>
+        </div>
+    )
+}
+
+export default Footer

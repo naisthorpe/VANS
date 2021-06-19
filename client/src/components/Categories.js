@@ -1,102 +1,43 @@
-
-// import React, { Component } from 'react'
-
-// class Search extends Component {
-//     state = {
-//         query: '',
-//     }
-
-//     handleInputChange = () => {
-//         this.setState({
-//             query: this.search.value
-//         })
-//     }
-
-
-//     render() {
-//         return (
-//             <div
-//                 id="about-container"
-//                 className="content-containers container text-center mt-5">
-//                 <h1 id="about" className={this.props.bounceLeft}>
-//                     Categories
-//             				</h1>
-//                 <form>
-//                     <input
-//                         placeholder="Search for..."
-//                         ref={input => this.search = input}
-//                         onChange={this.handleInputChange}
-//                     />
-//                     <p>{this.state.query}</p>
-//                 </form>
-//             </div>
-//         )
-
-//     }
-// }
-
-// export default Search
-
-
-
-
-
-
-
 import React from 'react';
+import { Tab } from 'semantic-ui-react';
 
-const list = [
+
+const panes = [
     {
-        id: 'a',
-        name: 'IT Technologies',
+        menuItem: 'IT Technologies',
+        render: () => <Tab.Pane> IT Technologies content</Tab.Pane>
     },
     {
-        id: 'b',
-        name: 'Health & Fitness',
+        menuItem: 'Health & Fitness',
+        render: () => <Tab.Pane> Health & Fitness content</Tab.Pane>
     },
     {
-        id: 'c',
-        name: 'Design',
+        menuItem: 'Design',
+        render: () => <Tab.Pane> Design content</Tab.Pane>
     },
     {
-        id: 'd',
-        name: 'Development',
+        menuItem: 'Development',
+        render: () => <Tab.Pane> Development content</Tab.Pane>
     },
     {
-        id: 'e',
-        name: 'Marketing',
+        menuItem: 'Marketing',
+        render: () => <Tab.Pane > Marketing content</Tab.Pane>
     },
     {
-        id: 'f',
-        name: 'Business',
+        menuItem: 'Business',
+        render: () => <Tab.Pane> Business content</Tab.Pane>
     },
     {
-        id: 'g',
-        name: 'Photography & Video Courses',
+        menuItem: 'Photography & Video Courses',
+        render: () => <Tab.Pane> Photography & Video Courses content</Tab.Pane>
     },
 ];
+const TabExampleVerticalTab = () => (
 
-const Categories = () => {
-    return (
-        <div
-            id="about-container"
-            className="content-containers container text-center mt-5">
-            <h1 id="about">
-                Categories
-            </h1>
-            <div className="d-flex w-100 justify-content-right" >
-                <ul className="list-group">
+    <Tab menu={{ fluid: true, vertical: true, tab: "true" }} panes={panes} />
 
-                    {list.map((item) => (
-                        <button className="list-group-item" key={item.id}>{item.name}</button>
+)
+export default TabExampleVerticalTab;
 
-                    ))}
 
-                </ul>
-            </div>
-        </div>
-    );
-};
-
-export default Categories;
 
