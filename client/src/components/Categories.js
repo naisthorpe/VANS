@@ -1,19 +1,21 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-
-
+import PostTable from './PostTable';
+const posts = [{ name: 'test1', date: 'test2', category: 'text3' },
+{ name: 'test1', date: 'test2', category: 'text3' },
+{ name: 'test1', date: 'test2', category: 'text3' }]
 const panes = [
     {
-        menuItem: 'IT Technologies',
-        render: () => <Tab.Pane> IT Technologies content</Tab.Pane>
+        menuItem: 'IT & Software',
+        render: () => <Tab.Pane> <PostTable posts={posts} /> </Tab.Pane>
     },
     {
         menuItem: 'Health & Fitness',
         render: () => <Tab.Pane> Health & Fitness content</Tab.Pane>
     },
     {
-        menuItem: 'Design',
-        render: () => <Tab.Pane> Design content</Tab.Pane>
+        menuItem: 'Graphic Design',
+        render: () => <Tab.Pane> Graphic Design content</Tab.Pane>
     },
     {
         menuItem: 'Development',
